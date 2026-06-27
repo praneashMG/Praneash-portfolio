@@ -5,14 +5,35 @@ import { Send, CheckCircle } from 'lucide-react';
 const Contact = () => {
   const [status, setStatus] = useState('idle');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('loading');
-    // Simulate network request
-    setTimeout(() => {
-      setStatus('success');
-      setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    
+    // Using Web3Forms for easy email sending without a backend
+    const formData = new FormData(e.target);
+    // Replace this with your Web3Forms access key (get it from https://web3forms.com)
+    formData.append("access_key", "037968d2-982e-4f47-9428-783a975cca3f");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        e.target.reset();
+        setTimeout(() => setStatus('idle'), 3000);
+      } else {
+        console.error("Error", data);
+        setStatus('idle');
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus('idle');
+    }
   };
 
   return (
@@ -46,20 +67,22 @@ const Contact = () => {
                 <label htmlFor="name" className="text-sm font-semibold text-slate-900 dark:text-slate-200">Your Name</label>
                 <input 
                   type="text" 
+                  name="name"
                   id="name"
                   required
                   placeholder="John Doe"
-                  className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white dark:placeholder-slate-600"
+                  className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-slate-900 dark:text-white dark:placeholder-slate-600"
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label htmlFor="email" className="text-sm font-semibold text-slate-900 dark:text-slate-200">Email Address</label>
                 <input 
                   type="email" 
+                  name="email"
                   id="email"
                   required
                   placeholder="john@example.com"
-                  className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all dark:text-white dark:placeholder-slate-600"
+                  className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all text-slate-900 dark:text-white dark:placeholder-slate-600"
                 />
               </div>
             </div>
@@ -67,11 +90,12 @@ const Contact = () => {
             <div className="flex flex-col gap-2">
               <label htmlFor="message" className="text-sm font-semibold text-slate-900 dark:text-slate-200">Your Message</label>
               <textarea 
+                name="message"
                 id="message"
                 required
                 rows="5"
                 placeholder="Hello Praneash, I would like to discuss..."
-                className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none dark:text-white dark:placeholder-slate-600"
+                className="px-5 py-4 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 outline-none transition-all resize-none text-slate-900 dark:text-white dark:placeholder-slate-600"
               />
             </div>
 
