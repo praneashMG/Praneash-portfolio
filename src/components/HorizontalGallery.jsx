@@ -117,22 +117,22 @@ function Card({ project }) {
       rel="noopener noreferrer"
       className="shrink-0 w-[85vw] sm:w-[420px] group"
     >
-      <div className="relative overflow-hidden rounded-2xl shadow-lg">
+      <div className="relative overflow-hidden rounded-2xl shadow-lg bg-slate-800 dark:bg-slate-900 border border-slate-700 dark:border-slate-800">
 
         {/* Image */}
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-[300px] object-cover transition duration-700 group-hover:scale-110"
+          className="w-full h-[300px] object-cover transition duration-700 group-hover:scale-110 opacity-80"
         />
 
         {/* Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         {/* Content */}
         <div className="absolute bottom-0 p-6 text-white">
 
-          <p className="text-xs tracking-widest opacity-80 uppercase">
+          <p className="text-xs tracking-widest opacity-80 uppercase text-blue-400 font-semibold">
             {project.category}
           </p>
 
