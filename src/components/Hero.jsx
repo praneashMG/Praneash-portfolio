@@ -135,6 +135,7 @@ const Hero = () => {
     "Next.js",
     "React Native",
     "Flutter",
+    "PostgreSQL",
   ].map((tech) => (
     <span
       key={tech}

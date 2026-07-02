@@ -79,6 +79,20 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 
                 {/* Simulated Details Sections based on project context */}
                 <div className="space-y-6">
+                  {project.techStack && (
+                    <div>
+                      <h4 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-slate-900 dark:text-white mb-3">
+                        <Code2 size={18} className="text-indigo-500" /> Tech Stack
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.techStack.map((tech, idx) => (
+                          <span key={idx} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-medium rounded-full border border-slate-200 dark:border-slate-700">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   <div>
                     <h4 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-slate-900 dark:text-white mb-2">
                       <Layout size={18} className="text-blue-500" /> Architecture & UI

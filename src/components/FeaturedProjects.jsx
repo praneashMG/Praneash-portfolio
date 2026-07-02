@@ -21,8 +21,9 @@ const featuredProjects = [
     category: "Full Stack Platform",
     description: "A comprehensive marketplace for buying and selling agriculture animals, along with associated products like food and medicine.",
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2064&auto=format&fit=crop", // Agriculture/Farm
-    url: "#",
-    status: "Coming Soon"
+    url: "https://agri-pet-connect.vercel.app/",
+    status: "Live Demo",
+    techStack: ["React", "Node.js", "PostgreSQL"]
   },
   {
     id: 3,
